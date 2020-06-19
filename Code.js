@@ -65,12 +65,12 @@ SheetDb.prototype.getRowById = function(rowId)
 SheetDb.prototype.getColumnByName = function(colName)
 {
     let columns = this.getColumns();
-    return this.getColumnById(columns.findIndex(colName));
+    return this.getColumnById(columns.findIndex(col => col == colName));
 }
 
 SheetDb.prototype.getColumnById = function(colId)
 {
-    let data = this.db.getRange(2, colId, 1, this.db.getLastColumn()).getValues();
+    let data = this.db.getRange(2, colId+1, 1, this.db.getLastColumn()).getValues();
     return data.reduce( (agg,item) => { agg.push(item[0]); return agg;}, []);
 }
 
