@@ -70,8 +70,8 @@ SheetDb.prototype.getColumnByName = function(colName)
 
 SheetDb.prototype.getColumnById = function(colId)
 {
-    let data = this.db.getRange(2, colId+1, 1, this.db.getLastColumn()).getValues();
-    return data.reduce( (agg,item) => { agg.push(item[0]); return agg;}, []);
+    let data = this.db.getRange(2, colId+1, this.db.getLastRow()-1, 1 ).getValues();
+    return data.reduce((agg,row) => { agg.push(row[0]); return agg;}, []);
 }
 
 SheetDb.prototype.toArray = function(data)
@@ -169,4 +169,3 @@ SheetDb.prototype.toJson = function (data)
                        []
                       );
 }
-
